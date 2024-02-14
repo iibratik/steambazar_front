@@ -1,4 +1,4 @@
-# mywish
+# steambazar
 
 ## Project setup
 ```
