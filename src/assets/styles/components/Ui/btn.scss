@@ -1,0 +1,15 @@
+.btn {
+  &-simple {
+    background: $green;
+    transition: 300ms all ease-out;
+    box-shadow: 0 0 0 12px #00968829, 0 12px 20px #00968700 12px #00968700;
+    &:hover {
+      box-shadow: 0 0 0 12px rgba(0, 150, 136, 0.16),
+        0 12px 20px rgba(0, 150, 136, 0.48),
+        inset 0 0 0 12px rgba(0, 150, 136, 0.2);
+    }
+    &.round {
+      border-radius: 15px;
+    }
+  }
+}

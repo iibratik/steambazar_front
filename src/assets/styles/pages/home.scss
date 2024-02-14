@@ -1,0 +1,60 @@
+.home-page {
+  &__content {
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    & .content-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    & .content-right {
+      display: flex;
+      align-items: center;
+      & .slider-btn {
+        border-radius: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        &s {
+          position: absolute;
+          display: flex;
+        }
+        i {
+          font-size: 25px;
+        }
+        &.top-games__prev-slide {
+          left: -70%;
+        }
+        &.top-games__next-slide {
+          right: -490%;
+        }
+      }
+      width: 60%;
+      & .top-games {
+        &__slide {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        &__slides {
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+    & .page-title {
+      font-weight: 400;
+      font-size: 51px;
+      line-height: 119%;
+      text-transform: capitalize;
+      text-align: center;
+      color: #fff;
+    }
+  }
+}
