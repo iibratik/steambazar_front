@@ -13,7 +13,13 @@
         <swiper
           :modules="modules"
           :navigation="swiperNavigation"
+          :loop="true"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: true,
+          }"
           :slides-per-view="3"
+          :slidesPerGroup="1"
           class="top-games__slides"
         >
           <swiper-slide
@@ -41,7 +47,7 @@
 
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Autoplay } from 'swiper/modules'
 import { mapActions, mapGetters } from 'vuex'
 
 // Import Swiper styles
@@ -62,7 +68,7 @@ export default {
   setup() {
     mapActions(['fetchTopGames'])
     return {
-      modules: [Navigation],
+      modules: [Navigation, Autoplay],
       swiperNavigation: {
         nextEl: '.top-games__next-slide',
         prevEl: '.top-games__prev-slide',

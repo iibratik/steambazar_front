@@ -4,16 +4,16 @@ import Home from '@/views/Home.vue'
 const routes = [
   {
     path: '/',
-    name: 'indevelope',
+    name: 'MainPage',
     component: Home,
     meta: { title: 'Главная' },
   },
-  // {
-  //   path: '/purchases',
-  //   name: 'indevelope',
-  //   component: Home,
-  //   meta: { title: 'Главная' },
-  // },
+  {
+    path: '/registration',
+    name: 'register',
+    component: Home,
+    meta: { title: 'Главная' },
+  },
 ]
 
 const router = createRouter({

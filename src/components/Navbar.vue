@@ -11,8 +11,11 @@
       />
       <div class="navbar__btns">
         <v-btn to="/purchases" class="btn-simple round my-purchases">
-          <i class="fa-solid fa-cart-shopping"></i> Мои <br />
-          покупки
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span
+            >Мои <br />
+            покупки</span
+          >
         </v-btn>
       </div>
     </div>

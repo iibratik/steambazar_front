@@ -1,4 +1,4 @@
-# steambazar
+# steambazart
 
 ## Project setup
 ```
