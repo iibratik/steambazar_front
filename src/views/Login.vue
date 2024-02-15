@@ -1,12 +1,12 @@
 <template>
     <div>
-        Есть
+
     </div>
 </template>
 
 <script>
     export default {
-
+        
     }
 </script>
 

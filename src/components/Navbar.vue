@@ -17,6 +17,10 @@
             покупки</span
           >
         </v-btn>
+        <v-btn to="/register" class="btn-simple round my-purchases">
+          <i class="fa-solid fa-user"></i>
+          <span>Войти/Регистрация</span>
+        </v-btn>
       </div>
     </div>
   </nav>

@@ -15,11 +15,11 @@
           :navigation="swiperNavigation"
           :loop="true"
           :autoplay="{
-            delay: 2500,
-            disableOnInteraction: true,
+            delay: 1500,
+            disableOnInteraction: false,
           }"
           :slides-per-view="3"
-          :slidesPerGroup="1"
+          :slides-per-group="1"
           class="top-games__slides"
         >
           <swiper-slide
