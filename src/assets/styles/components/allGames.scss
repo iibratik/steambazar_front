@@ -1,0 +1,17 @@
+.all-games {
+  &-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    &s {
+      display: grid;
+      align-items: center;
+      grid-template-columns: repeat(4, 250px);
+      align-items: center;
+      gap: 30px;
+      padding-bottom: 30px;
+      justify-content: center;
+    }
+  }
+}

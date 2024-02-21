@@ -18,6 +18,12 @@ const routes = [
     meta: { title: 'Регистрация' },
   },
   {
+    path: '/game/:gameId',
+    name: 'GamePage',
+    component: Register,
+    meta: { title: 'Регистрация' },
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login,
