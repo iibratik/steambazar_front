@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <Navbar> </Navbar>
+    <Navbar v-if="$route.path != '/register' && '/login'"> </Navbar>
     <router-view></router-view>
-    <Footer></Footer>
+    <Footer v-if="$route.path != '/register' && '/login'"></Footer>
   </v-app>
 </template>
 
