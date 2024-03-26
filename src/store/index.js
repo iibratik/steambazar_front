@@ -28,32 +28,40 @@ export default createStore({
   },
   actions: {
     fetchTopGames({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        axios
-          .get(state.serverUrl + 'topGames')
-          .then((response) => {
-            commit('setTopGames', response.data)
-            resolve(response.data)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+      axios
+        .get(state.serverUrl + 'topGames')
+        .then((response) => {
+          commit('setTopGames', response.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
     },
     fetchAllGames({ commit, state }, pageId) {
       commit('setAllGames', [])
-      return new Promise((resolve, reject) => {
-        axios
-          .get(state.serverUrl + `allGames/?page=${pageId}`)
-          .then((response) => {
-            commit('setAllGames', response.data)
-            resolve(response.data)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
+      axios
+        .get(state.serverUrl + `allGames/?page=${pageId}`)
+        .then((response) => {
+          commit('setAllGames', response.data)
+        })
+        .catch((error) => {
+          return (error)
+        })
     },
+    createUser({ commit, state }, userData) {
+      const jsonedData = JSON.stringify(userData);
+      axios.post(state.serverUrl + `users/`, jsonedData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        // Обрабатываем успешный ответ
+        console.log('Пользователь успешно создан:', response.data);
+      }).catch(error => {
+        // Обрабатываем возможные ошибки
+        console.error('Произошла ошибка при создании пользователя:', error);
+      });
+    }
   },
   modules: {},
 })

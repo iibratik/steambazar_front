@@ -1,16 +1,16 @@
 .register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: $black;
   &__button {
-    background-color: #00635a;
+    background-color: $black;
     padding: 10px;
     margin-top: 20px;
     border-radius: 15px;
     font-size: 28px;
   }
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background-color: $green;
   &__title {
     color: white;
     font-weight: bold;
@@ -22,17 +22,18 @@
     border-radius: 30px;
     padding: 20px;
     // background: white;
-    background-color: $black;
+    background-color: #009688;
 
-    width: 20%;
+    width: 30%;
     display: flex;
     flex-direction: column;
   }
   &__input {
-    border: 1px solid $black;
     padding: 10px;
+    font-weight: 500;
     background-color: white;
     &::placeholder {
+      font-weight: 500;
       color: #515151;
     }
     padding-left: 20px;
@@ -50,7 +51,7 @@
     & label {
       padding-left: 15px;
       margin-bottom: 10px;
-      color: #bcbcbc;
+      color: white;
       font-size: 20px;
       font-weight: 600;
     }
