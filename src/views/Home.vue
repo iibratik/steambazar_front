@@ -1,6 +1,9 @@
 <template>
   <main class="home-page">
-    <div class="container home-page__content">
+    <div
+      v-if="getTopGames && getTopGames.length > 0"
+      class="container home-page__content"
+    >
       <div class="header-home-page__content">
         <div class="content-left">
           <h2 class="page-title">
@@ -12,6 +15,7 @@
         </div>
         <div class="content-right">
           <swiper
+            v-if="getTopGames && getTopGames.length > 0"
             :modules="modules"
             :navigation="swiperNavigation"
             :loop="true"
@@ -29,9 +33,7 @@
               v-for="(item, index) in getTopGames"
               :key="index"
             >
-              <div class="slider__img">
-                <img :src="item.imgUrl" :alt="item.name" />
-              </div>
+              <img :src="item.img_url" :alt="item.name" />
             </swiper-slide>
           </swiper>
           <div class="slider-btns">
@@ -44,20 +46,19 @@
           </div>
         </div>
       </div>
-      <GamesGrid
-        :games="paginateArray(getAllGames, currentPage)"
-        @get-clicked-page="changePage"
-        :paginationCount="Math.ceil(getAllGames.length / 20)"
-      />
+      <AllGames />
     </div>
+    <Loader v-else />
   </main>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Autoplay } from 'swiper/modules'
-import { mapActions, mapGetters } from 'vuex'
-import GamesGrid from '@/components/GamesGrid.vue'
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation, Autoplay } from "swiper/modules";
+import { mapActions, mapGetters } from "vuex";
+import GamesGrid from "@/components/GamesGrid.vue";
+import AllGames from "@/views/AllGames.vue";
+import Loader from "@/components/Ui/Loader.vue";
 // Import Swiper styles
 
 export default {
@@ -65,43 +66,36 @@ export default {
     return {
       currentPage: 1,
       currentGamesGrid: [],
-    }
+    };
   },
   components: {
     Swiper,
     SwiperSlide,
     GamesGrid,
+    AllGames,
+    Loader,
   },
   computed: {
-    ...mapGetters(['getTopGames', 'getAllGames']),
+    ...mapGetters(["getTopGames"]),
     // Ваши другие вычисляемые свойства компонента...
   },
   methods: {
-    ...mapActions(['fetchTopGames', 'fetchAllGames']),
-    paginateArray(array, page) {
-      const itemsPerPage = 20
-      const startIndex = (page - 1) * itemsPerPage
-      const endIndex = startIndex + itemsPerPage
-      return array.slice(startIndex, endIndex)
-    },
-    changePage(pageNumber) {
-      this.currentPage = pageNumber
-    },
+    ...mapActions(["fetchTopGames", "fetchAllGames"]),
   },
   setup() {
-    mapActions(['fetchTopGames', 'fetchAllGames'])
+    mapActions(["fetchTopGames", "fetchAllGames"]);
     return {
       modules: [Navigation, Autoplay],
       swiperNavigation: {
-        nextEl: '.top-games__next-slide',
-        prevEl: '.top-games__prev-slide',
+        nextEl: ".top-games__next-slide",
+        prevEl: ".top-games__prev-slide",
       },
-    }
+    };
   },
   created() {
     // Вызываем действие fetchTopGames при создании компонента
-    this.fetchTopGames()
-    this.fetchAllGames()
+    this.fetchTopGames();
+    this.fetchAllGames();
   },
-}
+};
 </script>

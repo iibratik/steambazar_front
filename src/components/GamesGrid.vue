@@ -2,25 +2,35 @@
   <ul class="all-games-lists">
     <li class="all-games-list" v-for="(game, index) in games" :key="index">
       <div class="game" @click="getGamePage(game)">
-        <h3 class="game-title">{{ game.name }}</h3>
-        <img :src="game.imgUrl" alt="" />
+        <img :src="game.img_url" :alt="game.name" />
       </div>
     </li>
   </ul>
   <div class="all-games-pagination">
-    <button
-      v-for="(item, index) in paginationCount"
-      :key="index"
-      class="pagination-item"
-      @click="sendingClickedPage(item)"
+    <v-pagination
+      v-if="$route.path != '/'"
+      v-model="page"
+      :length="paginationCount"
+      @click="sendingClickedPage(page)"
+      :total-visible="7"
+    ></v-pagination>
+    <v-btn
+      v-else
+      class="btn-simple round"
+      @click="$router.push({ name: 'AllGames', params: { pageId: 1 } })"
+      >Все Игры</v-btn
     >
-      {{ item }}
-    </button>
   </div>
 </template>
 
 <script>
 export default {
+  emits:['get-clicked-page'],
+  data() {
+    return {
+      page: Number(this.$route.params.pageId ? this.$route.params.pageId : 1),
+    };
+  },
   props: {
     games: {
       type: Array,
@@ -33,8 +43,8 @@ export default {
   },
   methods: {
     sendingClickedPage(pageNumber) {
-      this.$emit('get-clicked-page', pageNumber)
+      this.$emit("get-clicked-page", pageNumber);
     },
   },
-}
+};
 </script>

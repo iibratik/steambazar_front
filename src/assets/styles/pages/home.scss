@@ -21,6 +21,12 @@
       }
       & .content-right {
         display: flex;
+        & .top-games__slide {
+          & img {
+            width: 90%;
+            height: 100%;
+          }
+        }
         align-items: center;
         & .slider-btn {
           border-radius: 30px;

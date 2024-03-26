@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    serverUrl: 'http://localhost:3000/',
+    serverUrl: 'http://127.0.0.1:8000/api/',
     topGames: [],
     allGames: [],
   },
@@ -40,10 +40,11 @@ export default createStore({
           })
       })
     },
-    fetchAllGames({ commit, state }) {
+    fetchAllGames({ commit, state }, pageId) {
+      commit('setAllGames', [])
       return new Promise((resolve, reject) => {
         axios
-          .get(state.serverUrl + `allGames`)
+          .get(state.serverUrl + `allGames/?page=${pageId}`)
           .then((response) => {
             commit('setAllGames', response.data)
             resolve(response.data)

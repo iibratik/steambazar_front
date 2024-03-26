@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue'
+import AllGames from '@/views/AllGames.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import NotFound from '@/components/NotFound.vue'
@@ -10,6 +11,12 @@ const routes = [
     name: 'MainPage',
     component: Home,
     meta: { title: 'Главная' },
+  },
+  {
+    path: '/allgames/:pageId',
+    name: 'AllGames',
+    component: AllGames,
+    meta: { title: 'Все Игры' },
   },
   {
     path: '/register',
