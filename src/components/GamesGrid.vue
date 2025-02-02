@@ -50,6 +50,7 @@ export default {
       this.$router.push({
         path: `/game/${game.id}`,
         query: {
+          id: game.id,
           title: game.name,
           name: game.name,
           image: game.imgUrl,

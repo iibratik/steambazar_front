@@ -29,7 +29,29 @@ export default createStore({
     setAllGamesPageCount(state, games) {
       state.allGames = games
     },
-    set
+    addToCart(state, game) {
+      const existingItem = state.cart.find(item => item.id == game.id);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        state.cart.push({ id: game.id, name: game.name, image: game.image, quantity: 1, price: game.price });
+      }
+
+    },
+    subtractFromCart(state, game) {
+      const index = state.cart.findIndex(item => item.id === game.id);
+      if (index === -1) return; // Если элемент не найден, ничего не делаем
+
+      const item = state.cart[index];
+      if (!item || typeof item.quantity !== "number") return; // Проверяем, что item существует и у него есть quantity
+
+      if (item.quantity > 1) {
+        item.quantity--; // Уменьшаем количество
+      } else {
+        state.cart.splice(index, 1); // Удаляем, если quantity <= 1
+      }
+    },
+
   },
   actions: {
     async fetchTopGames({ commit, state }) {

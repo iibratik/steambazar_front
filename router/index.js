@@ -5,6 +5,7 @@ import Login from '@/views/LoginView.vue'
 import Register from '@/views/RegisterView.vue'
 import NotFound from '@/components/NotFound.vue'
 import GameView from '@/views/GameView.vue'
+import CartView from '@/views/CartView.vue'
 
 const routes = [
   {
@@ -18,6 +19,12 @@ const routes = [
     name: 'AllGames',
     component: AllGames,
     meta: { title: 'Все Игры' },
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: CartView,
+    meta: { title: 'Корзинка' },
   },
   {
     path: '/register',

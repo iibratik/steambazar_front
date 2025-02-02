@@ -10,7 +10,10 @@
         class="input-simple round navbar__search"
       />
       <div class="navbar__btns">
-        <v-btn class="btn-simple round my-purchases">
+        <v-btn
+          class="btn-simple round my-purchases"
+          @mouseenter="showCart = !showCart"
+        >
           <i class="fa-solid fa-cart-shopping"></i>
           <div v-if="getCart.length > 0" class="cart-quantity">
             {{ getCart.length }}
@@ -21,22 +24,25 @@
           <span>Войти/Регистрация</span>
         </v-btn>
         <div
-          v-if="getCart && getCart.length > 0"
-          :style="dynamicStyle"
+          v-if="getCart.length != 0 && showCart"
           class="cart-body"
+          @mouseleave="showHideCart"
         >
           <div class="cart-game" v-for="game in getCart" :key="game.id">
             <div class="cart-body__left">
-              <img
-                src="https://itorrents-igruha.org/uploads/posts/2024-02/1707887455_library_600x900_2x.jpg"
-                alt=""
-              />
+              <img :src="game.image" :alt="game.name" />
             </div>
             <div class="cart-body__right">
-              <span class="game-name">Dealer Simulator</span>
-              <p class="game-quantity">Количество: <span>1</span></p>
+              <span class="game-name">{{ game.name }}</span>
+              <p class="game-quantity">
+                Количество: <span>{{ game.quantity }}</span>
+              </p>
+              <p class="game-quantity">
+                Цена: <span> ${{ game.price * game.quantity }}</span>
+              </p>
             </div>
           </div>
+          <v-btn class="btn-simple round" to="/cart">Купить</v-btn>
         </div>
       </div>
     </div>
@@ -49,11 +55,17 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["getCart"]),
-    dynamicStyle() {
-      const length = this.getCart.length; // Получаем длину массива
-      return {
-        bottom: length > 1 ? `-${5 * length}em` : "-5em",
-      };
+  },
+  data() {
+    return {
+      showCart: false,
+    };
+  },
+  methods: {
+    showHideCart() {
+      setTimeout(() => {
+        this.showCart = !this.showCart;
+      }, 150);
     },
   },
 };

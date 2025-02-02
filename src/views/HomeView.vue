@@ -86,6 +86,7 @@ export default {
         path: `/game/${game.id}`,
         query: {
           title: game.name,
+          id: game.id,
           name: game.name,
           image: game.imgUrl,
           price: game.price,

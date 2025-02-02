@@ -23,15 +23,15 @@
 export default {
   data: () => ({
     links: [
-      { title: 'Главная', link: '/' },
-      { title: 'Каталог', link: '/catalog' },
-      { title: 'О нас', link: '/aboutus' },
-      { title: 'Услуги', link: '/services' },
-      { title: 'Команда', link: '/team' },
-      { title: 'Наши контакты', link: '/contacts' },
+      { title: "Главная", link: "/" },
+      { title: "Каталог", link: "/allgames" },
+      { title: "О нас", link: "/aboutus" },
+      { title: "Услуги", link: "/services" },
+      { title: "Команда", link: "/team" },
+      { title: "Наши контакты", link: "/contacts" },
     ],
   }),
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

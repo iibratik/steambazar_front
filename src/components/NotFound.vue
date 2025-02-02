@@ -1,7 +1,7 @@
 <template>
-  <h1 class="not-found">Page not found!</h1>
+  <h2 class="not-found">Страница не найдена</h2>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
