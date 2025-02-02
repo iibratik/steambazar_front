@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
-import AllGames from '@/views/AllGames.vue'
-import Login from '@/views/Login.vue'
-import Register from '@/views/Register.vue'
+import Home from '@/views/HomeView.vue'
+import AllGames from '@/views/AllGamesView.vue'
+import Login from '@/views/LoginView.vue'
+import Register from '@/views/RegisterView.vue'
 import NotFound from '@/components/NotFound.vue'
+import GameView from '@/views/GameView.vue'
 
 const routes = [
   {
@@ -13,7 +14,7 @@ const routes = [
     meta: { title: 'Главная' },
   },
   {
-    path: '/allgames/:pageId',
+    path: '/allgames',
     name: 'AllGames',
     component: AllGames,
     meta: { title: 'Все Игры' },
@@ -26,9 +27,10 @@ const routes = [
   },
   {
     path: '/game/:gameId',
-    name: 'GamePage',
-    component: Register,
-    meta: { title: 'Регистрация' },
+    name: 'GameView',
+    component: GameView,
+    props: route => ({ game: JSON.parse(route.query.game || '{}') }),
+    meta: { title: 'Загрузка...' }, // Заголовок по умолчанию
   },
   {
     path: '/login',
@@ -48,6 +50,15 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+router.beforeEach((to, from, next) => {
+  if (to.name === 'GameView') {
+    const title = to.query.title;
+    if (title) {
+      to.meta.title = title;
+    }
+  }
+  next();
+});
 
 router.afterEach((to) => {
   if (to.meta.title) {

@@ -1,10 +1,67 @@
 .navbar {
   padding: 20px 0;
+
   &__btns {
     margin-left: 15px;
     display: flex;
+    position: relative;
+
     align-items: center;
     gap: 10px;
+    & .btn-simple {
+      padding: 10px 15px;
+    }
+    & .cart {
+      &-game {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      &-body {
+        width: 150%;
+        background-color: white;
+        position: absolute;
+        padding: 3% 5%;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        z-index: 99;
+        border-radius: 0 0 15px 15px;
+        color: $black;
+        &__left {
+          img {
+            height: 50px;
+            width: 50px;
+          }
+        }
+        &__right {
+          .game-name{
+            font-size: 20px;
+          }
+          .game-quantity {
+            font-size: 15px;
+            color: grey;
+            span{
+              color: $black;
+            }
+          }
+        }
+      }
+      &-quantity {
+        position: absolute;
+        top: -35%;
+        right: 0;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: red;
+        z-index: 99;
+        border-radius: 30px;
+      }
+    }
   }
   &-content {
     display: flex;
@@ -14,8 +71,7 @@
       display: flex;
       align-items: center;
       color: #fff;
-      padding: 10px 15px;
-
+      position: relative;
       .v-btn__content {
         gap: 5px;
       }

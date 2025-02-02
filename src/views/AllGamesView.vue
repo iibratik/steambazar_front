@@ -1,11 +1,11 @@
 <template>
   <div class="home-page__main">
     <GamesGrid
-      v-if="getAllGames.results && getAllGames.results.length > 0"
-      :games="getAllGames.results"
-      @get-clicked-page="changePage"
-      :paginationCount="Math.ceil(getAllGames.count / 20)"
+      v-if="getAllGames && getAllGames.length > 0"
+      :games="getAllGames"
     />
+    <!-- @get-clicked-page="changePage"
+      :paginationCount="Math.ceil(getTopGames.length / 20)" -->
     <Loader v-else />
   </div>
 </template>
@@ -26,22 +26,19 @@ export default {
   data() {
     return {
       paginationStatus: true,
+      games: [],
     };
-  },
-  setup() {
-    mapActions(["fetchAllGames"]);
-    mapGetters(["getAllGames"]);
   },
   methods: {
     ...mapActions(["fetchAllGames"]),
-    changePage(pageNumber) {
-      this.fetchAllGames(pageNumber);
-      this.$router.push({ name: "AllGames", params: { pageId: pageNumber } });
-    },
+    // changePage(pageNumber) {
+    //   this.fetchTopGames(pageNumber);
+    //   this.$router.push({ name: "AllGames", params: { pageId: pageNumber } });
+    // },
   },
   created() {
-    const pageId = this.$route.params.pageId
-    this.fetchAllGames( pageId ? pageId: 1);
+    this.fetchAllGames();
+    this.games = this.getAllGames;
   },
 };
 </script>

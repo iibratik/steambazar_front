@@ -1,11 +1,11 @@
 .spinner {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%) translateX(-50%);
+  top: 70%;
+  transform: translateY(-100%) translateX(-100%);
   left: 50%;
   width: 9px;
   z-index: 999;
-  height: 65px;
+  height: 45px;
   background: $black;
   &-content {
     min-width: 500px;

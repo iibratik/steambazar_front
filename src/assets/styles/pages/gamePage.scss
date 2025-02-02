@@ -1,0 +1,49 @@
+.game {
+    &-page {
+        margin: 2% 0;
+        &-content {
+            display: flex;
+            gap: 3%;
+            & .game {
+                &-quantity {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    &__btn {
+                        background-color: $green;
+                        padding: 5px;
+                        color: white;
+                        &s {
+                            display: flex;
+                            gap: 10px;
+                            border-radius: 30px;
+                            overflow: hidden;
+                            align-items: center;
+                            color: $black;
+                            background-color: white;
+                        }
+                    }
+                }
+                &__name {
+                    font-size: 36px;
+                    font-weight: bold;
+                }
+                &__price {
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+                &-content {
+                    &-right {
+                        padding-top: 2%;
+                    }
+                    &-body {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+        }
+    }
+}

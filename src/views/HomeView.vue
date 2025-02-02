@@ -31,9 +31,10 @@
             <swiper-slide
               class="top-games__slide"
               v-for="(item, index) in getTopGames"
+              @click="openGamePage(item)"
               :key="index"
             >
-              <img :src="item.img_url" :alt="item.name" />
+              <img :src="item.imgUrl" :alt="item.name" />
             </swiper-slide>
           </swiper>
           <div class="slider-btns">
@@ -46,7 +47,7 @@
           </div>
         </div>
       </div>
-      <AllGames />
+      <GamesGrid :games="getTopGames" />
     </div>
     <Loader v-else />
   </main>
@@ -57,9 +58,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Autoplay } from "swiper/modules";
 import { mapActions, mapGetters } from "vuex";
 import GamesGrid from "@/components/GamesGrid.vue";
-import AllGames from "@/views/AllGames.vue";
+import AllGames from "@/views/AllGamesView.vue";
 import Loader from "@/components/Ui/Loader.vue";
-// Import Swiper styles
 
 export default {
   data() {
@@ -81,6 +81,17 @@ export default {
   },
   methods: {
     ...mapActions(["fetchTopGames", "fetchAllGames"]),
+    openGamePage(game) {
+      this.$router.push({
+        path: `/game/${game.id}`,
+        query: {
+          title: game.name,
+          name: game.name,
+          image: game.imgUrl,
+          price: game.price,
+        },
+      });
+    },
   },
   setup() {
     mapActions(["fetchTopGames", "fetchAllGames"]);

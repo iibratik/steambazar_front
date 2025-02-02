@@ -3,9 +3,10 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    serverUrl: 'http://127.0.0.1:8000/api/',
+    serverUrl: 'http://localhost:3000/',
     topGames: [],
     allGames: [],
+    cart: [],
   },
   getters: {
     getTopGames(state) {
@@ -14,6 +15,9 @@ export default createStore({
     getAllGames(state) {
       return state.allGames
     },
+    getCart(state) {
+      return state.cart
+    }
   },
   mutations: {
     setTopGames(state, games) {
@@ -25,28 +29,26 @@ export default createStore({
     setAllGamesPageCount(state, games) {
       state.allGames = games
     },
+    set
   },
   actions: {
-    fetchTopGames({ commit, state }) {
-      axios
-        .get(state.serverUrl + 'topGames')
-        .then((response) => {
-          commit('setTopGames', response.data)
-        })
-        .catch((error) => {
-          reject(error)
-        })
+    async fetchTopGames({ commit, state }) {
+      try {
+        const response = await axios.get(state.serverUrl + 'topGames');
+        commit('setTopGames', response.data);
+      } catch (error) {
+        throw error; // Обработка ошибки
+      }
     },
-    fetchAllGames({ commit, state }, pageId) {
-      commit('setAllGames', [])
-      axios
-        .get(state.serverUrl + `allGames/?page=${pageId}`)
-        .then((response) => {
-          commit('setAllGames', response.data)
-        })
-        .catch((error) => {
-          return (error)
-        })
+    async fetchAllGames({ commit, state }, pageId) {
+      commit('setAllGames', []); // Очистка данных перед запросом
+      try {
+        const response = await axios.get(state.serverUrl + `allGames`);
+        commit('setAllGames', response.data);
+      } catch (error) {
+        throw error; // Обработка ошибки
+      }
+
     },
     createUser({ commit, state }, userData) {
       const jsonedData = JSON.stringify(userData);

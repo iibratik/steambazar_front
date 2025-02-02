@@ -10,28 +10,52 @@
         class="input-simple round navbar__search"
       />
       <div class="navbar__btns">
-        <v-btn to="/purchases" class="btn-simple round my-purchases">
+        <v-btn class="btn-simple round my-purchases">
           <i class="fa-solid fa-cart-shopping"></i>
-          <span
-            >Мои <br />
-            покупки</span
-          >
+          <div v-if="getCart.length > 0" class="cart-quantity">
+            {{ getCart.length }}
+          </div>
         </v-btn>
-        <v-btn to="/register" class="btn-simple round my-purchases">
+        <v-btn to="/register" class="btn-simple round">
           <i class="fa-solid fa-user"></i>
           <span>Войти/Регистрация</span>
         </v-btn>
+        <div
+          v-if="getCart && getCart.length > 0"
+          :style="dynamicStyle"
+          class="cart-body"
+        >
+          <div class="cart-game" v-for="game in getCart" :key="game.id">
+            <div class="cart-body__left">
+              <img
+                src="https://itorrents-igruha.org/uploads/posts/2024-02/1707887455_library_600x900_2x.jpg"
+                alt=""
+              />
+            </div>
+            <div class="cart-body__right">
+              <span class="game-name">Dealer Simulator</span>
+              <p class="game-quantity">Количество: <span>1</span></p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {}
+  computed: {
+    ...mapGetters(["getCart"]),
+    dynamicStyle() {
+      const length = this.getCart.length; // Получаем длину массива
+      return {
+        bottom: length > 1 ? `-${5 * length}em` : "-5em",
+      };
+    },
   },
-}
+};
 </script>
 
-<style lang="scss" scoped></style>
